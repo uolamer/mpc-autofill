@@ -100,9 +100,9 @@ TEXT_END = "\033[0m"
 
 # On macOS, os.getcwd() doesn't work as expected - retrieve the executable's directory another way instead
 
-cards_folder = currdir() + "/cards"
-if not os.path.exists(cards_folder):
-    os.mkdir(cards_folder)
+cards_folder = currdir() # + "/images"
+# if not os.path.exists(cards_folder):
+#    os.mkdir(cards_folder)
 
 
 def switch_to_frame(driver, frame):
