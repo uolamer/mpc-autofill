@@ -331,7 +331,7 @@ def download_card(bar: tqdm, cardinfo):
             # However, looking for the file with the ID in parentheses is preferred because it eliminates the possibility
             # of filename clashes between different images
             filename_split = filename.rsplit(".", 1)
-            filename_id = filename_split[0] + " (" + file_id + ")." + filename_split[1]
+            filename_id = filename
 
             # Filepath from filename
             # TODO: os.path.join?
