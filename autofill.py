@@ -229,7 +229,7 @@ def insert_card_fronts(bar, driver):
     for i in range(0, len(cardsinfo_front)):
         curr_card = q_front.get()
         slots = curr_card[1]
-        filepath = curr_card[0]
+        filepath = curr_card[2]
 
         if curr_card != ("", "") and card_not_uploaded(driver, slots):
             pid = upload_card(driver, filepath)
