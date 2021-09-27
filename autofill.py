@@ -1,5 +1,5 @@
 # To package up as executable, run this in command prompt:
-# (windows) pyinstaller --onefile --hidden-import=colorama --hidden-import=jinxed.terminfo.vtwin10 --icon=favicon.ico autofill.py
+# (windows) "c:\Program Files\Python39\Scripts\pyinstaller.exe" --onefile --hidden-import=colorama --hidden-import=jinxed.terminfo.vtwin10 --icon=favicon.ico autofill.py
 # (macos) pyinstaller --onefile --hidden-import=colorama --hidden-import=inquirer --icon=favicon.ico autofill.py
 
 import colorama
@@ -229,7 +229,7 @@ def insert_card_fronts(bar, driver):
     for i in range(0, len(cardsinfo_front)):
         curr_card = q_front.get()
         slots = curr_card[1]
-        filepath = curr_card[2]
+        filepath = curr_card[0]
 
         if curr_card != ("", "") and card_not_uploaded(driver, slots):
             pid = upload_card(driver, filepath)
@@ -335,11 +335,11 @@ def download_card(bar: tqdm, cardinfo):
 
             # Filepath from filename
             # TODO: os.path.join?
-            filepath = cards_folder + "/" + filename
+            filepath = filename
 
             if not os.path.isfile(filepath) or os.path.getsize(filepath) <= 0:
                 # The filepath without ID in parentheses doesn't exist - change the filepath to contain the ID instead
-                filepath = cards_folder + "/" + filename_id
+                filepath = filename
 
             # Download the image if it doesn't exist, or if it does exist but it's empty
             if (not os.path.isfile(filepath)) or os.path.getsize(filepath) <= 0:
@@ -394,7 +394,7 @@ def download_card(bar: tqdm, cardinfo):
         # Really wanna put the nail in the coffin of stalling when an error occurs during image downloads
         # Any uncaught exceptions just get ignored and the card is skipped, adding the empty entry onto the appropriate queue
         # print("encountered an unexpected error <{}>".format(e))
-        q_error.put(f"https://drive.google.com/uc?id={file_id}&export=download")
+        q_error.put(f"")
 
     # Add to the appropriate queue
     if file_face == "front":
